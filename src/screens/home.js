@@ -4,11 +4,11 @@ import { Image, ScrollView, View } from 'react-native';
 import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
+	fetchPopularMovie,
 	fetchTopRatedMovie,
 	fetchTrendingMovie,
 	fetchUpcomingMovie,
 } from '../api';
-import TopRatedMovie from '../components/top-rated-movie';
 import TrendingMovie from '../components/trending-movie';
 import UpcomingMovie from '../components/upcoming-movie';
 
@@ -16,11 +16,13 @@ export default function Home({ navigation }) {
 	const [trending, setTrending] = useState([]);
 	const [upcoming, setUpcoming] = useState([]);
 	const [topRated, setTopRated] = useState([]);
+	const [popular, setPopular] = useState([]);
 
 	useEffect(() => {
 		getTrendingMovie();
 		getUpcomingMovie();
 		getTopRatedMovie();
+		getPopularMovie();
 	}, []);
 
 	const getTrendingMovie = async () => {
@@ -36,6 +38,11 @@ export default function Home({ navigation }) {
 	const getTopRatedMovie = async () => {
 		const data = await fetchTopRatedMovie();
 		setTopRated(data.results);
+	};
+
+	const getPopularMovie = async () => {
+		const data = await fetchPopularMovie();
+		setPopular(data.results);
 	};
 
 	return (
@@ -61,8 +68,22 @@ export default function Home({ navigation }) {
 				contentContainerStyle={{ paddingBottom: 20 }}
 			>
 				{trending.length > 0 && <TrendingMovie trending={trending} />}
-				{upcoming.length > 0 && <UpcomingMovie />}
-				{topRated.length > 0 && <TopRatedMovie />}
+				{upcoming.length > 0 && (
+					<UpcomingMovie
+						upcoming={upcoming}
+						title={'Upcoming movie'}
+					/>
+				)}
+				{upcoming.length > 0 && (
+					<UpcomingMovie
+						upcoming={trending.reverse()}
+						title={'Trending movie'}
+					/>
+				)}
+				{popular.length > 0 && (
+					<UpcomingMovie upcoming={popular} title={'Popular movie'} />
+				)}
+				{topRated.length > 0 && <TrendingMovie trending={topRated} />}
 			</ScrollView>
 		</View>
 	);

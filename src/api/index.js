@@ -6,6 +6,7 @@ const base_url = 'https://api.themoviedb.org/3';
 const trendingMovie = `${base_url}/trending/movie/day?api_key=${api_key}`;
 const upcomingMovie = `${base_url}/movie/upcoming?api_key=${api_key}`;
 const topRatedMovie = `${base_url}/movie/top_rated?api_key=${api_key}`;
+const popularMovie = `${base_url}/movie/popular?api_key=${api_key}`;
 
 export const fetchTrendingMovie = () => {
 	return apiRequest(trendingMovie);
@@ -17,6 +18,10 @@ export const fetchUpcomingMovie = () => {
 
 export const fetchTopRatedMovie = () => {
 	return apiRequest(topRatedMovie);
+};
+
+export const fetchPopularMovie = () => {
+	return apiRequest(popularMovie);
 };
 
 export const image500 = posterPath => {
