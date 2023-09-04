@@ -29,23 +29,23 @@ export default function Home({ navigation }) {
 
 	const getTrendingMovie = async () => {
 		const data = await fetchTrendingMovie();
-		setTrending(data.results);
+		data.results && setTrending(data.results);
 		setIsLoading(false);
 	};
 
 	const getUpcomingMovie = async () => {
 		const data = await fetchUpcomingMovie();
-		setUpcoming(data.results);
+		data.results && setUpcoming(data.results);
 	};
 
 	const getTopRatedMovie = async () => {
 		const data = await fetchTopRatedMovie();
-		setTopRated(data.results);
+		data.results && setTopRated(data.results);
 	};
 
 	const getPopularMovie = async () => {
 		const data = await fetchPopularMovie();
-		setPopular(data.results);
+		data.results && setPopular(data.results);
 	};
 
 	return (
