@@ -38,8 +38,8 @@ export default function UpcomingMovie({ upcoming, title }) {
 								style={{ width: width * 0.3, height: height * 0.2 }}
 							/>
 							<Text className={'text-white'}>
-								{item.title.length > 12
-									? item.title.slice(0, 12) + '...'
+								{item.title.length > 22
+									? item.title.slice(0, 22) + '...'
 									: item.title}
 							</Text>
 						</View>
