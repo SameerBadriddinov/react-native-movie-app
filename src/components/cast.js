@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
 	Image,
@@ -9,6 +10,8 @@ import {
 import { image185 } from '../api';
 
 export default function Cast({ cast }) {
+	const navigation = useNavigation();
+
 	return (
 		<View classname={'my-6'}>
 			<Text className={'text-white text-lg mx-4 mb-5 mt-6'}>
@@ -24,6 +27,7 @@ export default function Cast({ cast }) {
 						<TouchableOpacity
 							key={idx}
 							className={'mr-4 items-center mb-6'}
+							onPress={() => navigation.navigate('Person', person.id)}
 						>
 							<View
 								className={
