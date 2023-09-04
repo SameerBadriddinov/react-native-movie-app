@@ -7,6 +7,7 @@ const trendingMovie = `${base_url}/trending/movie/day?api_key=${api_key}`;
 const upcomingMovie = `${base_url}/movie/upcoming?api_key=${api_key}`;
 const topRatedMovie = `${base_url}/movie/top_rated?api_key=${api_key}`;
 const popularMovie = `${base_url}/movie/popular?api_key=${api_key}`;
+const searchMovie = `${base_url}/search/movie?api_key=${api_key}`;
 
 const movieDetail = id =>
 	`${base_url}/movie/${id}?api_key=${api_key}`;
@@ -54,6 +55,10 @@ export const fetchPersonDetail = id => {
 
 export const fetchPersonMovies = id => {
 	return apiRequest(personMovies(id));
+};
+
+export const fetchSearchMovie = params => {
+	return apiRequest(searchMovie, params);
 };
 
 export const image500 = posterPath => {
